@@ -1,1 +1,13 @@
-<h1>Welcome to the show page</h1>
+
+<div class="container">
+  <h1>Welcome to the show page</h1>
+  <h1> <%= @flat.name %> </h1>
+  <p> <%= @flat.address %> </p>
+  <p> <%= @flat.description %> </p>
+  <p> <%= @flat.price_per_night %> </p>
+  <p> <%= @flat.number_of_guests %> </p>
+
+  <button><%= link_to "edit flat", edit_flat_path(@flat) %></button>
+
+  <%= link_to "home", flats_path %>
+</div>

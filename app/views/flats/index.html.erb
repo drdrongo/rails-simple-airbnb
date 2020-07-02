@@ -1,1 +1,25 @@
-<h1>Welcome to the index page</h1>
+<div class="container-fluid">
+  <h1>Welcome to the index page</h1>
+
+  <%= link_to "new", new_flat_path, class: 'btn btn-outline-primary w-100' %>
+
+
+  <div class="card-columns">
+    <% @flats.each do |flat| %>
+      <%= link_to flat_path(flat), :action => 'go' do %>
+      <div class="card">
+        <%= image_tag("apartment_#{rand(1..10)}.jpg", class: "card-img-top")  %>
+        <div class="card-body">
+          <span> <%= flat.name %> </span><br>
+          <span> <small> <%= flat.address %></small></span><br>
+          <span> <small> <%= flat.description %></small></span><br>
+          <div class="d-flex align-items-center justify-content-around">
+            <span><i class="fas fa-user"></i> <%= flat.number_of_guests %></span>
+            <span><%= "$ #{flat.price_per_night}" %></span>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

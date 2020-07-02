@@ -15,7 +15,7 @@ puts 'Creating new seeds...'
   flat = Flat.new(
     name: Faker::Company.catch_phrase,
     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-    description: "#{Faker::Appliance.brand} #{Faker::Appliance.equipment}",
+    description: "#{rand(1..3)}DT",
     price_per_night: rand(14..30) * 5,
     number_of_guests: rand(1..5)
   )

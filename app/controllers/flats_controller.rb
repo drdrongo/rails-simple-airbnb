@@ -14,7 +14,7 @@ class FlatsController < ApplicationController
   def create
     @flat = Flat.new(flat_params)
     if @flat.save
-      redirect_to restaurants_path
+      redirect_to flats_path
     else
       render :new
     end
@@ -28,7 +28,7 @@ class FlatsController < ApplicationController
     @flat = Flat.find(params[:id])
     @flat.update(flat_params)
     if @flat.save
-      redirect_to restaurants_path
+      redirect_to flat_path(@flat)
     else
       render :edit
     end
@@ -40,6 +40,6 @@ class FlatsController < ApplicationController
   private
 
   def flat_params
-    params.require('flat').permit(:name, :address, :description, :price_per_night, :number_of_guests
+    params.require('flat').permit(:name, :address, :description, :price_per_night, :number_of_guests)
   end
 end
