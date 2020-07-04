@@ -1,24 +1,39 @@
+<%= render '/layouts/navbar' %>
+
 <div class="container-fluid">
   <h1>Welcome to the index page</h1>
 
   <%= link_to "new", new_flat_path, class: 'btn btn-outline-primary w-100' %>
 
 
-  <div class="card-columns">
+  <div class="card-columns my-3">
     <% @flats.each do |flat| %>
       <%= link_to flat_path(flat), :action => 'go' do %>
-      <div class="card">
+      <div class="card mb-0">
         <%= image_tag("apartment_#{rand(1..10)}.jpg", class: "card-img-top")  %>
-        <div class="card-body">
-          <span> <%= flat.name %> </span><br>
-          <span> <small> <%= flat.address %></small></span><br>
-          <span> <small> <%= flat.description %></small></span><br>
+        <div class="card-body p-3 pb-1">
+          <h5 class="medium mb-1"> <%= flat.name %> </h5>
+          <p class="small mb-2"> <%= flat.address %></p>
           <div class="d-flex align-items-center justify-content-around">
-            <span><i class="fas fa-user"></i> <%= flat.number_of_guests %></span>
-            <span><%= "$ #{flat.price_per_night}" %></span>
+            <p class="small mb-1"> <i class="fas fa-user"></i> <%= flat.number_of_guests %></p>
+            <p class="small mb-1"> <%= "$ #{flat.price_per_night}" %></p>
           </div>
         </div>
       <% end %>
+        <div class="flat-card-actions">
+          <div class="d-flex py-1 align-items-center justify-content-around border rounded">
+            <%= link_to flat_path(flat), action: 'go' do %>
+              <i class="fa fa-info mb-0 py-1"></i>
+            <% end %>
+            <%= link_to edit_flat_path(flat), action: 'edit' do %>
+              <i class="fa fa-edit mb-0 py-1"></i>
+            <% end %>
+            <%= link_to flat_path(flat), action: 'destroy',  method: :delete, data: {confirm: "You sure?"} do %>
+              <i class="fa fa-trash mb-0 py-1"></i>
+            <% end %>
+          </div>
+        </div>
+
       </div>
     <% end %>
   </div>
